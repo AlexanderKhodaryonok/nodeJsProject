@@ -1,0 +1,24 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Vino app</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {{#if isMain}}
+      <li class="active"><a href="/">Main</a></li>
+      {{else}}
+      <li><a href="/">Main</a></li>
+      {{/if}}
+
+      {{#if isCatalog}}
+      <li class="active"><a href="/catalog">Catalog</a></li>
+      {{else}}
+      <li><a href="/catalog">Catalog</a></li>
+      {{/if}}
+
+      {{#if isAdd}}
+      <li class="active"><a href="/add">Add vino</a></li>
+      {{else}}
+      <li><a href="/add">Add vino</a></li>
+      {{/if}}
+    </ul>
+  </div>
+</nav>
