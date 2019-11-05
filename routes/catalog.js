@@ -1,11 +1,14 @@
 const { Router } = require('express');
+const SortOfVino = require('../models/sortOfVino');
 
 const router = Router();
 
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+  const sorts = await SortOfVino.getAll(); 
   res.render('catalog', {
     title: 'Catalog',
-    isCatalog: true
+    isCatalog: true,
+    sorts
   });
 });
 

@@ -22,7 +22,6 @@ class SortOfVino {
   save = async () => {
     const sorts = await SortOfVino.getAll();
     sorts.push(this.toJSON());
-    console.log('sorts', sorts);
 
     return new Promise((resolve, reject) => {
       fs.writeFile(
