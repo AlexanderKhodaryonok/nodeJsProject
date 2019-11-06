@@ -5,3 +5,23 @@
 .price {
   font-size: 2rem;
 }
+
+.sort {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sort h1 {
+  margin-bottom: 2rem;
+}
+
+.sort img {
+  max-width: 600px;
+  height: auto;
+}
+
+.sort .price.big {
+  font-size: 2.5rem;
+}

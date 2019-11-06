@@ -12,4 +12,14 @@ router.get('/', async (req, res) => {
   });
 });
 
+router.get('/:id', async (req, res) => {
+  const sort = await SortOfVino.getById(req.params.id);
+  console.log(sort.title);
+  res.render('catalogInnerPage', {
+    layout: 'empty',
+    title: `Sort ${sort.title}`,
+    sort
+  });
+});
+
 module.exports = router;

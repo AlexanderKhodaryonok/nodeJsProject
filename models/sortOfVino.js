@@ -19,7 +19,7 @@ class SortOfVino {
     }
   } 
 
-  save = async () => {
+  async save () {
     const sorts = await SortOfVino.getAll();
     sorts.push(this.toJSON());
 
@@ -52,6 +52,11 @@ class SortOfVino {
         }
       );
     })
+  }
+
+  static getById = async (id) => {
+    const sorts = await SortOfVino.getAll();
+    return sorts.find(s => s.id === id);
   }
 }
 
