@@ -11,6 +11,8 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+  console.log('add post')
+  console.log(req.body.title, req.body.price, req.body.img);
   const sortOfVino = new SortOfVino(req.body.title, req.body.price, req.body.img);
   await sortOfVino.save();
   res.redirect('/catalog');
