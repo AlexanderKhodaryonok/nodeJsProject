@@ -17,7 +17,27 @@ class SortOfVino {
       img: this.img,
       id: this.id
     }
-  } 
+  };
+
+  static async update(sort) {
+    const sorts = await   SortOfVino.getAll();
+
+    const idx = sorts.findIndex(s => s.id === sort.id);
+    sorts[idx] = sort;
+    return new Promise((resolve, reject) => {
+      fs.writeFile(
+        path.join(__dirname, '..', 'data', 'vino.json'),
+        JSON.stringify(sorts),
+        (error) => {
+          if(error) {
+            reject(error)
+          } else {
+            resolve();
+          }
+        }
+      )
+    })
+  }
 
   async save () {
     const sorts = await SortOfVino.getAll();
