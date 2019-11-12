@@ -24,6 +24,7 @@ class SortOfVino {
 
     const idx = sorts.findIndex(s => s.id === sort.id);
     sorts[idx] = sort;
+    
     return new Promise((resolve, reject) => {
       fs.writeFile(
         path.join(__dirname, '..', 'data', 'vino.json'),

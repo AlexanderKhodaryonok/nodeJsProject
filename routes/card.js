@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 const Card = require('../models/card');
-const SortOfVino = require('../models/SortOfVino');
+const SortOfVino = require('../models/sortOfVino');
 
 router.post('/add', async (req, res) => {
     const sort = await SortOfVino.getById(req.body.id);

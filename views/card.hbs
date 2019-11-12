@@ -1,1 +1,27 @@
 <h1>Basket</h1>
+
+{{#if sorts.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Count</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sorts}}
+      <tr>
+        <td>{{title}}</td>
+        <td>{{count}}</td>
+        <td>
+          <button class="btn btm-small">Delete</button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <p><strong>Price:</strong><span class="price">{{price}}</span></p>
+{{else}}
+  <p>Basket is empty</p>
+{{/if}}

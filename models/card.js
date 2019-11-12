@@ -8,11 +8,12 @@ const pathToFile = path.join(
 )
 
 class Card {
-    static add = async (sort) => {
-        const card = await Card.fetch();
+    static async add (sort) {
+        const card = await Card.fetch();     
 
         const idx = card.sorts.findIndex(s => s.id === sort.id);
         const condidate = card.sorts[idx];
+        
         if (condidate) {
             condidate.count++;
             card.sorts[idx] = condidate;
@@ -34,8 +35,8 @@ class Card {
         })
     };
 
-    static fetch = async () => {
-        return  new Promise((resolve, reject) => {
+    static async fetch () {
+        return new Promise((resolve, reject) => {
             fs.readFile(pathToFile, 'utf-8', (error, content) => {
                 if (error) {
                     reject (error)
