@@ -1,0 +1,29 @@
+<h1>Basket</h1>
+
+<div id="card">
+  {{#if sorts.length}}
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Count</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each sorts}}
+      <tr>
+        <td>{{title}}</td>
+        <td>{{count}}</td>
+        <td>
+          <button class="btn btm-small js-remove" data-id="{{id}}">Delete</button>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <p><strong>Price:</strong><span class="price">{{price}}</span></p>
+  {{else}}
+  <p>Basket is empty</p>
+  {{/if}}
+</div>
