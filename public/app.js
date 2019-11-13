@@ -19,7 +19,6 @@ if($card) {
         method: 'delete'
       }).then(res => res.json())
         .then(card => {
-          console.log(card.sorts.length);
             if(card.sorts.length) {
               const html = card.sorts.map(s => {
                 return `

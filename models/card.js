@@ -51,7 +51,6 @@ class Card {
         const card = await Card.fetch();
         const idx = card.sorts.findIndex(s => s.id === id);
         const sort = card.sorts[idx];
-        console.log(sort.count);
         if(1 === sort.count) {
             card.sorts = card.sorts.filter(s => s.id !== id)
         } else {
