@@ -46,6 +46,30 @@ class Card {
             })
         })
     }
+
+    static async remove(id) {
+        const card = await Card.fetch();
+        const idx = card.sorts.findIndex(s => s.id === id);
+        const sort = card.sorts[idx];
+        console.log(sort.count);
+        if(1 === sort.count) {
+            card.sorts = card.sorts.filter(s => s.id !== id)
+        } else {
+            card.sorts[idx].count--;
+        }
+
+        card.price -= sort.price
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(pathToFile, JSON.stringify(card), error => {
+                if(error) {
+                    reject(error);
+                } else {
+                    resolve(card);
+                }
+            })
+        })
+    }
 };
 
 module.exports = Card;
