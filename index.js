@@ -7,7 +7,7 @@ const addRouts = require('./routes/add');
 const catalogRouts = require('./routes/catalog');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8081;
 
 const hbs = exphbs.create({
   defaultLayout: 'main',
