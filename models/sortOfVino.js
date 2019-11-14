@@ -10,7 +10,7 @@ class SortOfVino {
     this.id = uuid();
   }
 
-  toJSON = () => {
+  toJSON() {
     return {
       title: this.title,
       price: this.price,
@@ -59,7 +59,7 @@ class SortOfVino {
     })
   }
 
-  static getAll = () => {
+  static getAll() {
     return new Promise((resolve, reject) => {
       fs.readFile(
         path.join(__dirname, '..', 'data', 'vino.json'),
@@ -75,7 +75,7 @@ class SortOfVino {
     })
   }
 
-  static getById = async (id) => {
+  static async getById (id) {
     const sorts = await SortOfVino.getAll();
     return sorts.find(s => s.id === id);
   }
