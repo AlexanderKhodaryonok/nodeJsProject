@@ -11,9 +11,17 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const sortOfVino = new SortOfVino(req.body.title, req.body.price, req.body.img);
-  await sortOfVino.save();
-  res.redirect('/catalog');
+  const sortOfVino = new SortOfVino({
+    title: req.body.title,
+    price: req.body.price,
+    img: req.body.img
+  });
+  try{
+    await sortOfVino.save();
+    res.redirect('/catalog');
+  } catch (e) {
+    console.log(e);
+  }
 })
 
 module.exports = router;
