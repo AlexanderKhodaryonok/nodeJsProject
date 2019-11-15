@@ -31,6 +31,17 @@ router.post('/edit', async (req, res) => {
   res.redirect("/catalog");
 })
 
+router.post('/remove', async (req, res) => {
+  try{
+    await SortOfVino.deleteOne({
+      _id: req.body.id
+    });
+    res.redirect("/catalog");
+  } catch(e) {
+    console.log(e);
+  }
+})
+
 router.get('/:id', async (req, res) => {
   const sort = await SortOfVino.findById(req.params.id);
   res.render('catalogInnerPage', {

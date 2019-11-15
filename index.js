@@ -29,7 +29,10 @@ app.use('/card', cardRouts);
 async function start() {
   try {
     const url = 'mongodb+srv://Alexander:zQC2Ik77F5Lgpe8Q@cluster0-s4qji.mongodb.net/shop';
-    await mongoose.connect(url, { useNewUrlParser: true });
+    await mongoose.connect(url, { 
+      useNewUrlParser: true,
+      useFindAndModify: false 
+    });
     app.listen(PORT, () => {
       console.log(`server is running on PORT ${PORT}...`);
     });

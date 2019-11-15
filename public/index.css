@@ -31,3 +31,7 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.catalog-form {
+  margin-bottom: 2rem;
+}
