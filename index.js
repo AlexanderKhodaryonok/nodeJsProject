@@ -21,23 +21,30 @@ app.set('views', 'views');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
-app.use('/', mainRouts);
-app.use('/add', addRouts);
-app.use('/catalog', catalogRouts);
-app.use('/card', cardRouts);
 
 async function start() {
   try {
     const url = 'mongodb+srv://Alexander:zQC2Ik77F5Lgpe8Q@cluster0-s4qji.mongodb.net/shop';
     await mongoose.connect(url, { 
       useNewUrlParser: true,
-      useFindAndModify: false 
+      useFindAndModify: false,
+      useUnifiedTopology: true
     });
+    app.use('/', mainRouts);
+    app.use('/add', addRouts);
+    app.use('/catalog', catalogRouts);
+    app.use('/card', cardRouts);
     app.listen(PORT, () => {
       console.log(`server is running on PORT ${PORT}...`);
     });
   } catch (e) {
-    console.log(e);
+    app.get('/', (req, res) => {
+      res.set('Content-Type', 'text/html, charset=utf-8');
+      res.send('<h1>Technical problems with this server</h1>');
+    })
+    app.listen(PORT, () => {
+      console.log(`server is not running on PORT ${PORT}...`);
+    });
   }
 };
 
