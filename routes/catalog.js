@@ -4,7 +4,7 @@ const SortOfVino = require('../models/sortOfVino');
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const sorts = await SortOfVino.find(); 
+  const sorts = await SortOfVino.find().populate('userId', 'email name').select('price title img');
   res.render('catalog', {
     title: 'Catalog',
     isCatalog: true,
