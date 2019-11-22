@@ -1,8 +1,8 @@
 version: '3'
 services:
-  node_dev:
+  node_prod:
     build:
       context: ./
       dockerfile: Dockerfile
     ports:
-      - "8081:8081"
+      - "80:8081"
