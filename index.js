@@ -6,6 +6,7 @@ const cardRouts = require('./routes/card');
 const addRouts = require('./routes/add');
 const catalogRouts = require('./routes/catalog');
 const mongoose = require('mongoose');
+const User = require('./models/user');
 
 const app = express();
 const PORT = process.env.PORT || 8081;
@@ -18,6 +19,16 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
+
+app.use(async (req, res, next) => {
+  try{
+    const user = await User.findById('5dd7aa0adddce6002047d2cd');
+    req.user = user;
+    next();
+  } catch(e) {
+    console.log(e);
+  };
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
@@ -34,6 +45,18 @@ async function start() {
     app.use('/add', addRouts);
     app.use('/catalog', catalogRouts);
     app.use('/card', cardRouts);
+
+    const condidate = await User.findOne();
+    if(!condidate) {
+      const user = new User({
+        email: 'useremail@gmail.com',
+        name: 'UserName',
+        cart: {items: []}
+      });
+
+      await user.save();
+    };
+
     app.listen(PORT, () => {
       console.log(`server is running on PORT ${PORT}...`);
     });
@@ -42,6 +65,7 @@ async function start() {
       res.set('Content-Type', 'text/html, charset=utf-8');
       res.send('<h1>Technical problems with this server</h1>');
     })
+    
     app.listen(PORT, () => {
       console.log(`server is not running on PORT ${PORT}...`);
     });
